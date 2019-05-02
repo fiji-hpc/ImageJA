@@ -76,9 +76,9 @@
 		<system>GitHub Issues</system>
 		<url>https://github.com/imagej/imagej1/issues</url>
 	</issueManagement>
-	<ciManagement>
-		<system>Jenkins</system>
-		<url>https://jenkins.imagej.net/</url>
+  <ciManagement>
+    <system>Travis CI</system>
+    <url>https://travis-ci.org/imagej/ImageJA</url>
 	</ciManagement>
 
 	<properties>
