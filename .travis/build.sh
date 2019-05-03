@@ -97,7 +97,7 @@ EOL
 		checkSuccess $?
 	fi
 	if [ "$TRAVIS_SECURE_ENV_VARS" = true \
-		-a "$TRAVIS_PULL_REQUEST" = false \
+		-a "$TRAVIS_BRANCH" = "master" \
 		-a -f "$keyFile" ]
 	then
 		echo
@@ -108,8 +108,7 @@ EOL
 
 	# Run the build.
 	if [ "$TRAVIS_SECURE_ENV_VARS" = true \
-		-a "$TRAVIS_PULL_REQUEST" = false \
-		-a -f release.properties ]
+		-a "$TRAVIS_BRANCH" = "master" ]
 	then
 		echo
 		echo "== Cutting and deploying release version =="
