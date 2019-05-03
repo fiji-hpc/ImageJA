@@ -77,8 +77,8 @@
 		<url>https://github.com/imagej/imagej1/issues</url>
 	</issueManagement>
   <ciManagement>
-    <system>Travis CI</system>
-    <url>https://travis-ci.org/imagej/ImageJA</url>
+		<system>Travis CI</system>
+		<url>https://travis-ci.org/imagej/ImageJA</url>
 	</ciManagement>
 
 	<properties>
@@ -92,7 +92,7 @@
 		<javac.path>${java.home}/../lib/tools.jar</javac.path>
 
 		<!-- NB: Deploy releases to the SciJava Maven repository. -->
-		<releaseProfiles>deploy-to-scijava</releaseProfiles>
+		<releaseProfiles>sonatype-oss-release</releaseProfiles>
 	</properties>
 
 	<dependencies>
