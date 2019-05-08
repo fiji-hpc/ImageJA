@@ -11,7 +11,7 @@
 
 	<groupId>net.imagej</groupId>
 	<artifactId>ij</artifactId>
-	<version>1.52o</version>
+	<version>1.52o-SNAPSHOT</version>
 
 	<name>ImageJ</name>
 	<description>ImageJ is an open source Java image processing program inspired by NIH Image for the Macintosh.</description>
@@ -66,7 +66,6 @@
 	<scm>
 		<connection>scm:git:git://github.com/imagej/ImageJA</connection>
 		<developerConnection>scm:git:git@github.com:imagej/ImageJA</developerConnection>
-		<tag>v1.52o</tag>
 		<url>https://github.com/imagej/ImageJA</url>
 	</scm>
 	<issueManagement>

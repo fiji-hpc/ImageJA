@@ -114,7 +114,7 @@ EOL
 		echo "== Cutting and deploying release version =="
 		version=`org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version`
 		mvn -B -Dtag=v$version release:prepare
-		mvn -B release:perform
+		mvn -B release:perform -DconnectionUrl=scm:git:https://github.com/imagej/ImageJA -Dtag=v$version
 		checkSuccess $?
 	else
 		echo
