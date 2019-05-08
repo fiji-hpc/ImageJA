@@ -3,6 +3,8 @@ jdk: openjdk8
 branches:
   only:
   - master
+git:
+  depth: false
 install: true
 script: ".travis/build.sh $encrypted_df8d49f7d896_key $encrypted_df8d49f7d896_iv"
 cache:
