@@ -116,7 +116,8 @@ EOL
 		#version=`echo $version | cut -d'-' -f 1`
 		# Never mind the development version, it will be overwritten in ij1-builds, but if we don't put it here it'll try to come up with one itself
 		#mvn -B release:prepare -DtagNameFormat=v@{project.version} -DreleaseVersion=$version -DdevelopmentVersion=$version-SNAPSHOT
-		mvn -B org.apache.maven.plugins:maven-release-plugin:2.5:perform -DconnectionUrl=scm:git:https://github.com/imagej/ImageJA
+    mkdir ./checkout
+		mvn -B release:perform -DworkingDirectory=./checkout -DconnectionUrl=scm:git:https://github.com/imagej/ImageJA
 		checkSuccess $?
 	else
 		echo
