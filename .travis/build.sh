@@ -18,7 +18,6 @@ checkSuccess() {
 # Build Maven projects.
 if [ -f pom.xml ]
 then
-	echo travis_fold:start:scijava-maven
 	echo "= Maven build ="
 	echo
 	echo "== Configuring Maven =="
@@ -110,11 +109,20 @@ EOL
 	if [ "$TRAVIS_SECURE_ENV_VARS" = true \
 		-a "$TRAVIS_BRANCH" = "master" ]
 	then
-		version=`mvn org.apache.maven.plugins:maven-help-plugin::evaluate -Dexpression=project.version | grep -v "^\["`
-		echo "== Cutting and deploying release version $version=="
-		version=v`echo $version | cut -d'-' -f 1`
-    mvn release:prepare-with-pom -DconnectionUrl=scm:svn:https://github.com/imagej/ImageJA/tree/$version
-		mvn -B release:perform -DconnectionUrl=scm:git:https://github.com/imagej/ImageJA
+#		version=`mvn org.apache.maven.plugins:maven-help-plugin::evaluate -Dexpression=project.version | grep -v "^\["`
+#		echo "== Cutting and deploying release version $version=="
+#		version=v`echo $version | cut -d'-' -f 1`
+#    mvn release:prepare-with-pom -DconnectionUrl=scm:svn:https://github.com/imagej/ImageJA/tree/$version
+#		mvn -B release:perform -DconnectionUrl=scm:git:https://github.com/imagej/ImageJA
+    NEXUS_URL=http://maven.imagej.net/ 
+    SONATYPE_PROXY=$NEXUS_URL/service/local/data_cache/repositories/sonatype/content
+
+    git clean -fdx
+
+    mvn clean &&
+    mvn -Psonatype-oss-release deploy &&
+    curl --netrc -i -X DELETE \
+       $SONATYPE_PROXY/net/imagej/ij/maven-metadata.xml
 		checkSuccess $?
 	else
 		echo
@@ -122,7 +130,6 @@ EOL
 		mvn -B install
 		checkSuccess $?
 	fi
-	echo travis_fold:end:scijava-maven
 fi
 
 exit $success
