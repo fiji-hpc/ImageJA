@@ -67,7 +67,7 @@
 		<connection>scm:git:git://github.com/imagej/ImageJA</connection>
 		<developerConnection>scm:git:git@github.com:imagej/ImageJA</developerConnection>
 		<url>https://github.com/imagej/ImageJA</url>
-		<tag>HEAD</tag>
+		<tag>v1.52o</tag>
 	</scm>
 	<issueManagement>
 		<system>GitHub Issues</system>
