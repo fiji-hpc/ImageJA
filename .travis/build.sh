@@ -117,7 +117,7 @@ EOL
 		# Never mind the development version, it will be overwritten in ij1-builds, but if we don't put it here it'll try to come up with one itself
 		#mvn -B release:prepare -DtagNameFormat=v@{project.version} -DreleaseVersion=$version -DdevelopmentVersion=$version-SNAPSHOT
     mkdir /home/travis/build/imagej/ImageJA/target/checkout
-		mvn -B release:perform -DconnectionUrl=scm:git:https://github.com/imagej/ImageJA
+		mvn -B release:perform -DconnectionUrl=scm:git:https://github.com/imagej/ImageJA -Dtag=v1.52o
 		checkSuccess $?
 	else
 		echo
