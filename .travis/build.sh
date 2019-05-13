@@ -110,14 +110,11 @@ EOL
 	if [ "$TRAVIS_SECURE_ENV_VARS" = true \
 		-a "$TRAVIS_BRANCH" = "master" ]
 	then
-		echo
-		echo "== Cutting and deploying release version =="
-		#version=`mvn org.apache.maven.plugins:maven-help-plugin::evaluate -Dexpression=project.version | grep -v "^\["`
-		#version=`echo $version | cut -d'-' -f 1`
-		# Never mind the development version, it will be overwritten in ij1-builds, but if we don't put it here it'll try to come up with one itself
-		#mvn -B release:prepare -DtagNameFormat=v@{project.version} -DreleaseVersion=$version -DdevelopmentVersion=$version-SNAPSHOT
-    mkdir /home/travis/build/imagej/ImageJA/target/checkout
-		mvn -B release:perform -DconnectionUrl=scm:git:https://github.com/imagej/ImageJA -Dtag=v1.52o
+		version=`mvn org.apache.maven.plugins:maven-help-plugin::evaluate -Dexpression=project.version | grep -v "^\["`
+		echo "== Cutting and deploying release version $version=="
+		version=v`echo $version | cut -d'-' -f 1`
+    mvn release:prepare-with-pom -DconnectionUrl=scm:svn:https://github.com/imagej/ImageJA/tree/$version
+		mvn -B release:perform -DconnectionUrl=scm:git:https://github.com/imagej/ImageJA
 		checkSuccess $?
 	else
 		echo
